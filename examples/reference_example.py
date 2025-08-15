@@ -19,7 +19,7 @@ if __name__ == "__main__":
     
     # Same portfolio with Social Security and pension
     portfolio= (PortfolioBuilder("with_income")
-                .with_age(65)
+                .with_age(62)
                 .with_inflation(Decimal('0.03'),Decimal('0.008'))
                 .with_withdrawal_order(WithdrawalOrder.TAX_EFFICIENT)
                 .add_cash_account(
@@ -77,7 +77,7 @@ if __name__ == "__main__":
             .build())
     annual_withdrawal = 80000
     years=30
-    num_simulations=1
+    num_simulations=1000
 
     withdrawal_strategy = MultiAccountFixedWithdrawal(
         initial_withdrawal=Money(annual_withdrawal),
@@ -95,16 +95,19 @@ if __name__ == "__main__":
     print("inflation",portfolio.inflation_rate)
     print("withdrawal order",portfolio.withdrawal_order)
 
+    print("\n" + "="*60)
+    print("accounts")
+    print("="*60)
+    
+  
+  
     results = planner.run_simulation(
         portfolio=portfolio,
         withdrawal_strategy=withdrawal_strategy,
         years=years,
         num_simulations=num_simulations
     )
-    print("\n" + "="*60)
-    print("accounts")
-    print("="*60)
-    
+  
 
   
 
